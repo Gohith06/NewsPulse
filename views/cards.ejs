@@ -1,0 +1,90 @@
+<%- include('partials/header') %>
+    <body>
+        <div class="head">
+            <div class="main">
+                <h1 id="cardHeading"> <%= category %> </h1>
+                <div class="row mt-2">
+                    <% for(let news of newsData) { %>
+                        <div class="col-lg-4 col-md-6 mb-5">
+                            <div class="card">
+                                <img src=<%= news.image %> class="card-img-top" alt="#" style="height: 197px; width: 350px;">
+                                <div class="card-body">
+                                    <p style="font-size:2vh;"><%= news.publishedAt %> | <%= news.source.name %></p>
+                                    <h5 class="card-title">
+                                        <% var title = news.title.slice(0, 50); %>
+                                        <% if (title.length < 50) { %>
+                                            <% title += '...'; %>
+                                            <% title += " ".repeat(Math.abs(50-title.length)); %>
+                                        <% } else{ %>
+                                            <% title += '...'; %>
+                                        <% } %>
+                                         
+                                        <%= title %> 
+                                      </h5>
+                                      <p class="card-text">
+                                        <% var description = news.description.slice(0, 100); %>
+                                            <% if (description.length < 100) { %>
+                                                <% description += '...'; %>
+                                                <% description += " ".repeat(Math.abs(100-description.length)); %>
+                                            <% } else { %>
+                                                <% description += '...'; %>
+                                            <% } %> 
+                                        <%= description %>  
+                                      </p>
+                                      
+                                    <a href="/summary/<%= news.id %>" class="btn btn-primary">Read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/63b6c5070d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    <% for(let news of newsData) { %>
+    <div class="col-lg-4 col-md-6">
+        <div class="card" style="width: 18rem;">
+            <img src= <%= news.image %> class="card-img-top" alt="#" style="height: 192px; width: 287px">
+            <div class="card-body">
+                <h5 class="card-title"><%= news.title.slice(0,50) + '...' %></h5>
+                <p class="card-text"><%= news.description.slice(0,100) + '...' %></p>
+                <p class="card-text"><small class="text-muted"><%= news.publishedAt %> | <%= news.source.name %></small></p>
+                <a href="/<%= category %>/<%= news.id %>" class="btn btn-primary">Read more</a>
+            </div>
+        </div>
+    </div>
+<% } %>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html> -->

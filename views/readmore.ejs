@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/cards.css">
+
+    <title>Summary</title>
+
+    <div class="head">
+        <div class="main">
+            <div class="heading">NEWS PULSE</div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+</head>
+
+<body>
+    <div class="head">
+
+        <div class="main">
+
+            <div class="hero">
+                <div class="rleft">
+                    <h1 style="margin-left: 3vh;"><%= foundNews.title %></h1>
+                    <p style="font-size:2vh; margin-top: 4vh; margin-left: 3vh;"><%= foundNews.publishedAt %> | <%= foundNews.source.name %></p>
+                    <div class="photo">
+                        <img src= <%= foundNews.image %> alt="">
+                    </div>
+                    <div class="rlcontant">
+                        <div class="rcontent">
+                            <p id="result"><%= summarizedNews %></p>
+                        </div>
+
+                    </div>
+                    <div class="line" style="margin-top: 2vw;"></div>
+                    <form>
+                        <label for="percent">Summary Length:</label>
+                        <span>Short</span>
+                        <input type="range" id="percent" name="percent" min="0.3" max="0.8" step="0.1">
+                        <span>Long</span>
+                        <button>Submit</button>
+                    </form>
+                    <div class="line" style="margin-top: 2vw;"></div>
+                    <div class="prevnext">
+                        <div class="prev">
+                            <% if (prevPost) { %>
+                            <p>PREV POST</p>
+                                <h2>
+                                    <a href="/summary/<%= prevPost.id %>"><%= prevPost.title %></a>
+                                </h2>
+                            <% } %>
+
+                        </div>
+                        <div class="next">
+                            <% if (nextPost) { %>
+                            <p>NEXT POST</p>
+                                <h2>
+                                    <a href="/summary/<%= nextPost.id %>"><%= nextPost.title %></a>
+                                </h2>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        async function updateSummary(percentage) {
+            try {
+                console.log("In func: "+percentage)
+                const response = await fetch('http://localhost:3000/updatesummary', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({percentage})
+                });
+
+                const data = await response.json();
+                console.log(data)
+                //Update the summarized news content with the newly generated summary
+                document.querySelector('#result').innerText = data.summarizedNews;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        const f = document.querySelector('form')
+        f.addEventListener('submit', async(e) => {
+            e.preventDefault()
+            const percentage = parseFloat(document.querySelector('#percent').value)
+            await updateSummary(percentage);
+        })
+    </script>
+</body>
+
+</html>

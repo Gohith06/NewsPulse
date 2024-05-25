@@ -27,7 +27,7 @@ function addId(data){
 
 async function fetchNews(category,language){
     try{
-        const apiKey = '7272b799e271993e0d8b758c674440f9'
+        const apiKey = '38c90b5b5e3644c33f55e5ede8f2cc02'
         const url = `https://gnews.io/api/v4/top-headlines?`+
                     `category=${category}`+
                     `&lang=${language}`+

@@ -74,7 +74,7 @@ async function searchNews(q, country, from, to){
 
     try{
         let url = 'https://gnews.io/api/v4/search?';
-        const apiKey = '7272b799e271993e0d8b758c674440f9';
+        const apiKey = '38c90b5b5e3644c33f55e5ede8f2cc02';
 
         if (q) url += `q=${encodeURIComponent(q)}`;
         url += `&lang=en`;

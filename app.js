@@ -21,8 +21,10 @@ app.use(session({
     saveUninitialized: true
 }));
 
+const mongo_connect_uri = "mongodb+srv://gohith06:77c8UcdhE8k2UMfW@sign-ups.m6u5sic.mongodb.net/NewsPulse?retryWrites=true&w=majority&appName=Sign-ups";
+
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb://127.0.0.1:27017/NewsPulse')
+mongoose.connect(mongo_connect_uri)
 .then( () => {
   console.log("Connection established with mongodb!!");
 })

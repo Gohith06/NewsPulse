@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/cards.css">
 
     <title>Summary</title>
@@ -38,28 +38,28 @@
                     </div>
                     <div class="line" style="margin-top: 2vw;"></div>
                     <form>
-                        <label for="percent">Summary Length:</label>
-                        <span>Short</span>
+                        <label for="percent" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: large;">Summary Length:</label>
+                        <span style="font-family: 'Times New Roman', Times, serif; margin-left: 10px;">Short</span>
                         <input type="range" id="percent" name="percent" min="0.3" max="0.8" step="0.1">
-                        <span>Long</span>
-                        <button>Submit</button>
+                        <span style="font-family: 'Times New Roman', Times, serif;">Long</span>
+                        <button type="submit" class="btn btn-primary btn-sm mt-2" style="margin-bottom: 10px;">Submit</button>
                     </form>
-                    <div class="line" style="margin-top: 2vw;"></div>
+                    <div class="line" style="margin-top: 0.5vw;"></div>
                     <div class="prevnext">
                         <div class="prev">
                             <% if (prevPost) { %>
-                            <p>PREV POST</p>
+                            <p style="font-family: 'Times New Roman', Times, serif; font-size: x-large; font-weight: bolder;">PREV POST</p>
                                 <h2>
-                                    <a href="/summary/<%= prevPost.id %>"><%= prevPost.title %></a>
+                                    <a href="/summary/<%= prevPost.id %>" style="font-family: 'Times New Roman', Times, serif; font-size: 23px;"><%= prevPost.title %></a>
                                 </h2>
                             <% } %>
 
                         </div>
                         <div class="next">
                             <% if (nextPost) { %>
-                            <p>NEXT POST</p>
+                            <p style="font-family: 'Times New Roman', Times, serif; font-size: x-large; font-weight: bolder;">NEXT POST</p>
                                 <h2>
-                                    <a href="/summary/<%= nextPost.id %>"><%= nextPost.title %></a>
+                                    <a href="/summary/<%= nextPost.id %>" style="font-family: 'Times New Roman', Times, serif; font-size: 23px;"><%= nextPost.title %></a>
                                 </h2>
                             <% } %>
                         </div>
@@ -97,6 +97,7 @@
             await updateSummary(percentage);
         })
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

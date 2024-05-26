@@ -86,9 +86,10 @@ app.get('/business', requireLogin, async(req,res) => {
 
     const category = "BUSINESS"
     newsData = await fetchNews("business", "en")
+    const flag = newsData.length === 0? false: true;
     // console.log('business')
     // console.log(newsData)
-    res.render('cards', {newsData, category});
+    res.render('cards', {newsData, category, flag});
     //res.send("<h1>Business</h1>");
 
 });
@@ -119,9 +120,10 @@ app.get('/entertainment', requireLogin, async(req,res) => {
 
     const category = "ENTERTAINMENT"
     newsData = await fetchNews("entertainment", "en")
+    const flag = newsData.length === 0? false: true;
     console.log('entertainmentNews')
     console.log(newsData)
-    res.render('cards', {newsData, category});
+    res.render('cards', {newsData, category, flag});
     //res.send("<h1>Entertainment</h1>");
 
 });
@@ -141,9 +143,10 @@ app.get('/general', requireLogin, async(req,res) => {
 
     const category = "GENERAL"
     newsData = await fetchNews("general", "en")
+    const flag = newsData.length === 0? false: true;
     console.log('general')
     console.log(newsData)
-    res.render('cards', {newsData, category});
+    res.render('cards', {newsData, category, flag});
     //res.send("<h1>General</h1>");
 
 });
@@ -163,9 +166,10 @@ app.get('/health', requireLogin, async(req,res) => {
 
     const category = "HEALTH"
     newsData = await fetchNews("health", "en")
+    const flag = newsData.length === 0? false: true;
     console.log('health')
     console.log(newsData)
-    res.render('cards', {newsData, category});
+    res.render('cards', {newsData, category, flag});
     //res.send("<h1>Health</h1>");
 
 });
@@ -185,9 +189,10 @@ app.get('/science',requireLogin, async(req,res) => {
 
     const category = "SCIENCE"
     newsData = await fetchNews("science", "en")
+    const flag = newsData.length === 0? false: true;
     console.log('science')
     console.log(newsData)
-    res.render('cards', {newsData, category});
+    res.render('cards', {newsData, category, flag});
     //res.send("<h1>Science</h1>");
 
 });
@@ -207,9 +212,10 @@ app.get('/sports', requireLogin, async(req,res) => {
 
     const category = "SPORTS"
     newsData = await fetchNews("sports", "en")
+    const flag = newsData.length === 0? false: true;
     console.log('sports')
     console.log(newsData)
-    res.render('cards', {newsData, category});
+    res.render('cards', {newsData, category, flag});
     //res.send("<h1>Sports</h1>");
 
 });
@@ -229,9 +235,10 @@ app.get('/technology', requireLogin, async(req,res) => {
 
     const category = "TECHNOLOGY"
     newsData = await fetchNews("technology", "en")
+    const flag = newsData.length === 0? false: true;
     console.log('technology')
     console.log(newsData)
-    res.render('cards', {newsData, category});
+    res.render('cards', {newsData, category, flag});
     //res.send("<h1>Technology</h1>");
 
 });
@@ -267,8 +274,9 @@ app.post('/search', requireLogin, async(req, res) => {
     category = category.split(",").join(" ")
     
     newsData = await searchNews(q, country, from, to)
+    const flag = newsData.length === 0? false: true;
     console.log(newsData)
-    res.render('cards', {newsData, category});
+    res.render('cards', {newsData, category, flag});
 })
 
 app.get('/summary/:id', requireLogin, async(req, res) => {

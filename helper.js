@@ -1,25 +1,19 @@
 const { v4: uuidv4 } = require('uuid');
 
-// function filter(data){
-
-//     let news = [];
-//     for(let i of data)
-//     {
-//         if(!i.source.name || !i.author || !i.title || !i.description || !i.url || !i.urlToImage || !i.publishedAt || !i.content)
-//             continue;
-
-//         i.id = uuidv4();
-//         news.push(i);
-//     }
-
-//     return news;
-// }
-
 function addId(data){
     let news = []
     for(let i of data){
+
+        const utcTime = i.publishedAt;
+        const utcDate = new Date(utcTime);
+        utcDate.setHours(utcDate.getHours() + 5)
+        utcDate.setMinutes(utcDate.getMinutes() + 30)
+        const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false, timeZone: 'Asia/Kolkata' };
+        const istTime = utcDate.toLocaleDateString('en-IN', options);
+        i.publishedAt = istTime;     
         i.id = uuidv4()
         news.push(i)
+
     }
         
     return news
@@ -83,7 +77,7 @@ async function searchNews(q, country, from, to){
         url += `&nullable=None`;
         if (from) url += `&from=${from}`;
         if (to) url += `&to=${to}`;
-        url += `&sortby=publishedAt`;
+        
         url += `&expand=content`;
         url += `&apikey=${apiKey}`;
         console.log(url)

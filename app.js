@@ -21,7 +21,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
-const mongo_connect_uri = "mongodb+srv://gohith06:77c8UcdhE8k2UMfW@sign-ups.m6u5sic.mongodb.net/NewsPulse?retryWrites=true&w=majority&appName=Sign-ups";
+const mongo_connect_uri = --mongodb_database_url-- ;
 
 mongoose.set('strictQuery', true);
 mongoose.connect(mongo_connect_uri)
